@@ -65,3 +65,14 @@ body {
 }
 
 /* Add additional styling as needed */
+
+#player {
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+}
+
+#player .playerturn {
+  color: #fff;
+  padding: 10px;
+}

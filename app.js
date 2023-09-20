@@ -30,7 +30,9 @@ const Gameboard = (() => {
     const makeMove = (index, symbol) => {
         if (board[index] === '') {
             board[index] = symbol;
+
             return true; // Move successful
+
         }
         return false; // Move invalid
     };
@@ -59,6 +61,15 @@ const renderBoardToDOM = (board) => {
     });
 };
 
+const updateCurrentPlayerTurn = (player) => {
+    const playerButton = document.getElementById('player');
+    playerButton.innerHTML = '';
+    const currentPlayerDiv = document.createElement('div');
+    currentPlayerDiv.classList.add('playerturn');
+    currentPlayerDiv.textContent = `Current Player: ${player.getName()}`; // Display the player's name or symbol
+    playerButton.appendChild(currentPlayerDiv);
+};
+
 const DisplayController = (() => {
 
     const renderBoard = (board) => {
@@ -75,7 +86,7 @@ const DisplayController = (() => {
         setTimeout(() => {
             alert('It\'s a draw!');
         }, 100); // Add a small delay (e.g., 100 milliseconds)
-       
+
     };
 
     return { announceWinner, announceDraw, renderBoard };
@@ -95,25 +106,31 @@ const GameController = (() => {
         gameOver = false;
         Gameboard.resetBoard();
         DisplayController.renderBoard(Gameboard.getBoard());
+        updateCurrentPlayerTurn(currentPlayer); // Update the UI with the current player's turn at the start
     };
 
     const makeMove = (index) => {
         if (!gameOver) {
             if (Gameboard.makeMove(index, currentPlayer.getSymbol())) {
                 DisplayController.renderBoard(Gameboard.getBoard());
+                updateCurrentPlayerTurn(currentPlayer); // Update the UI with the current player's turn
 
-                if (Gameboard.isWinner(currentPlayer.getSymbol())) {
-                    DisplayController.announceWinner(currentPlayer);
-                    gameOver = true;
-                } else if (Gameboard.isBoardFull()) {
-                    DisplayController.announceDraw();
-                    gameOver = true;
-                } else {
-                    currentPlayer = (currentPlayer === player1) ? player2 : player1;
-                }
+                setTimeout(() => {
+                    if (Gameboard.isWinner(currentPlayer.getSymbol())) {
+                        DisplayController.announceWinner(currentPlayer);
+                        gameOver = true;
+                    } else if (Gameboard.isBoardFull()) {
+                        DisplayController.announceDraw();
+                        gameOver = true;
+                    } else {
+                        currentPlayer = (currentPlayer === player1) ? player2 : player1;
+                        updateCurrentPlayerTurn(currentPlayer); // Update the UI with the new current player's turn
+                    }
+                }, 100); // Add a small delay (e.g., 100 milliseconds)
             }
         }
     };
+
 
     const resetGame = () => {
         Gameboard.resetBoard();
@@ -122,7 +139,7 @@ const GameController = (() => {
         gameOver = false;
     };
 
-    return { startGame, makeMove, resetGame };
+    return { startGame, makeMove, resetGame, currentPlayer };
 })();
 
 
@@ -130,5 +147,7 @@ const restartButton = document.getElementById('restart-button');
 restartButton.addEventListener('click', () => {
     GameController.resetGame(); // Call the reset function when the button is clicked
 });
+
+
 
 GameController.startGame();
