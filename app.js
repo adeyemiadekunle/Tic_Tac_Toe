@@ -72,7 +72,10 @@ const DisplayController = (() => {
     };
 
     const announceDraw = () => {
-        alert('It\'s a draw!');
+        setTimeout(() => {
+            alert('It\'s a draw!');
+        }, 100); // Add a small delay (e.g., 100 milliseconds)
+       
     };
 
     return { announceWinner, announceDraw, renderBoard };
