@@ -23,7 +23,7 @@ body {
   align-content: center;
   width: 320px; /* Adjust width as needed */
   margin: 0 auto; /* Center the board horizontally */
-  margin-top: 100px;
+  margin-top: 30px;
 }
 
 /* Style individual cells */
@@ -48,7 +48,7 @@ body {
 .reset {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 30px;
   padding: 10px;
 }
 
