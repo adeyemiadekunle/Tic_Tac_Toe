@@ -1,0 +1,67 @@
+/* Style the game board container */
+
+body {
+  background: #000;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.header h1 {
+  color: #fff;
+}
+#board {
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    100px
+  ); /* 3 columns of equal width */
+  grid-gap: 10px; /* Gap between cells */
+  justify-content: center;
+  align-content: center;
+  width: 320px; /* Adjust width as needed */
+  margin: 0 auto; /* Center the board horizontally */
+  margin-top: 100px;
+}
+
+/* Style individual cells */
+.cell {
+  width: 100px; /* Cell width */
+  height: 100px; /* Cell height */
+  background-color: #f0f0f0; /* Cell background color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px; /* Font size for X and O */
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 4rem;
+}
+
+/* Style hover effect for cells */
+.cell:hover {
+  background-color: #ccc;
+}
+
+.reset {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  padding: 10px;
+}
+
+#restart-button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 14px;
+  transition: 0.3s ease-in-out;
+}
+
+#restart-button:hover {
+  background: #ccc;
+}
+
+/* Add additional styling as needed */

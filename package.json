@@ -1,0 +1,16 @@
+{
+  "name": "tic_tac_toe",
+  "version": "1.0.0",
+  "description": "assignment on theodinproject",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tic",
+    "tac",
+    "toe"
+  ],
+  "author": "adeyemi adekunle",
+  "license": "ISC"
+}
